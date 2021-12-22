@@ -43,30 +43,6 @@ def sendEmail(to, content):
     server.sendmail('mohnish694@gmail.com',to,content)
     server.close()
 
-def get_commands_tamil():
-    try:
-        with speech_recognition.Microphone() as source:
-            print('Listening...')
-            voice=listener.listen(source,None,400)
-            command=listener.recognize_google(voice,language='ta-in')
-            command=command.lower()
-            print(master+":"+command)
-    except Exception as e:
-        pass
-    return command
-
-def get_commands_hindi():
-    try:
-        with speech_recognition.Microphone() as source:
-            print('Listening...')
-            voice=listener.listen(source,None,400)
-            command=listener.recognize_google(voice,language='hi-in')
-            command=command.lower()
-            print(master+":"+command)
-    except Exception as e:
-        pass
-    return command
-
 def get_commands():
     try:
         with speech_recognition.Microphone() as source:
