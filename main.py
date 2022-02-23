@@ -6,9 +6,8 @@ import wikipedia
 import smtplib
 import pyjokes
 import webbrowser
-from langdetect import detect, DetectorFactory
-from gtts import gTTS
-import os
+import hindi_language_main
+import tamil_main
 
 listener =speech_recognition.Recognizer()
 talk_back=pyttsx3.init()
@@ -55,7 +54,31 @@ def get_commands():
         pass
     return command
 
-wishMe()
+def language():
+    print("In which language may i help you?")
+    speak("in which language may i help you")
+    print("1.English")
+    speak("english")
+    print("2.Tamil")
+    speak("tamil")
+    print("3.Hindi")
+    speak("hindi")
+    print("Select language")
+    print("Initializing Harry..")
+    command = get_commands()
+    print(command)
+    if 'hindi' in command:
+        hindi_language_main.run_in_hindi()
+    elif 'tamil' in command:
+        tamil_main.tamil()
+    elif 'english' in command:
+        wishMe()
+    else:
+        speak('sorry no such language detected kindly try again')
+        language()
+
+
+language()
 
 def run_harry():
     print('Initializing Harry...')
@@ -63,9 +86,9 @@ def run_harry():
     print(command)
 
     if('who are you' in command):
-        speak('I am Harry.A Virtual Assistant developed by Mohnishkumar and Harini')
+        speak('I am Harry.A Virtual Assistant developed by Mohnishkumar,Harini and vijay')
     elif 'hi' in command:
-        speak('hey mam')
+        speak('hey masters')
     elif 'time' in command:
         time= datetime.datetime.now().strftime('%I:%M %p')
         speak("It's "+time+ "now.")
@@ -85,6 +108,8 @@ def run_harry():
         url_1='https://www.'+website+'.com'
         url=url_1.replace(' ','')
         webbrowser.open(url)
+    elif 'change language' in command:
+        language()
 
     elif 'what is your name' in command:
         speak('My name is Harry.')
@@ -127,7 +152,7 @@ def run_harry():
     elif 'are you single' in command:
         speak("no i am in a relationship with network connection")
     elif 'are you male or female' in command:
-        speak('i am not either male or female,i am a virtual personal assistant of Mohnishkumar and Harini')
+        speak('i am not either male or female,i am a virtual personal assistant of Mohnishkumar,Harini and vijay')
     elif 'what have you studied' in command:
         speak("not much as you masters")
     else:

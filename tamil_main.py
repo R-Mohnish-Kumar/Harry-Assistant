@@ -11,6 +11,9 @@ from gtts import gTTS
 import os
 from translate import Translator
 
+import main
+
+
 def tamil():
     listener = speech_recognition.Recognizer()
     talk_back = pyttsx3.init()
@@ -31,13 +34,13 @@ def tamil():
         print(hour)
 
         if hour >= 0 and hour < 12:
-            speak("good morning" + master)
+            speak("காலை வணக்கம்" + master)
 
         elif hour >= 12 and hour < 15:
-            speak("good afternoon" + master)
+            speak("மதிய வணக்கம்" + master)
 
         else:
-            speak("good Evening" + master)
+            speak("மாலை வணக்கம்" + master)
 
         speak("நான் ஹாரி உங்கள் உதவியாளர், நான் உங்களுக்கு ஏதாவது உதவி செய்ய முடியுமா")
 
@@ -69,7 +72,7 @@ def tamil():
         print(command)
 
         if ('நீங்க யாரு' in command):
-            speak('நான் ஹாரி. மோஹ்னிஷ்குமார் மற்றும் ஹரிணி ஆகியோரால் உருவாக்கப்பட்ட மெய்நிகர் உதவியாளர்')
+            speak('நான் ஹாரி. மோஹ்னிஷ்குமார் ஹரிணி மற்றும் விஜய் ஆகியோரால் உருவாக்கப்பட்ட மெய்நிகர் உதவியாளர்')
         elif 'நேரம்' in command:
             time = datetime.datetime.now().strftime('%I:%M %p')
             speak("தற்பொழுது நேரம்" + time)
@@ -92,13 +95,15 @@ def tamil():
             url_1 = 'https://www.' + translation + '.com'
             url = url_1.replace(' ', '')
             webbrowser.open(url)
+        elif 'மொழியை மாற்ற வேண்டும்' in command:
+            main.language()
 
         elif 'உங்க பெயர் என்ன' in command:
             speak('என் பெயர் ஹாரி')
-        elif 'ஏப்படி இருக்கீங்க' in command:
+        elif 'எப்படி இருக்கீங்க' in command:
             speak('நான் நன்றாக இருக்கிறேன் கேட்டதற்கு நன்றி Masters')
-        elif 'चलाओ' in command:
-            song = command.replace('चलाओ', '')
+        elif 'பாட்டு' in command:
+            song = command.replace('பாட்டு', '')
             speak(song + ' உங்களுக்காக ஒரு பாடல் போடுகிறேன்')
             translator = Translator(from_lang="tamil", to_lang="english")
             translation = translator.translate(song)
